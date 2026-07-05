@@ -30,7 +30,7 @@
 
   # optional-dependencies
   fastapi-cli,
-  httpx,
+  httpx2,
   jinja2,
   itsdangerous,
   python-multipart,
@@ -45,14 +45,14 @@
 
 buildPythonPackage rec {
   pname = "fastapi";
-  version = "0.136.3";
+  version = "0.138.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "tiangolo";
     repo = "fastapi";
     tag = version;
-    hash = "sha256-lfmk8ZveKPukEEfwWq2mKtWmOHAtVzGuE5BsOskDzh0=";
+    hash = "sha256-u7Rr0Yd818B9mH9jKmIKFLlAQQebb0L9/zpOvFoUZO8=";
   };
 
   build-system = [ pdm-backend ];
@@ -72,7 +72,7 @@ buildPythonPackage rec {
   optional-dependencies = {
     all = [
       fastapi-cli
-      httpx
+      httpx2
       jinja2
       python-multipart
       itsdangerous
@@ -90,7 +90,7 @@ buildPythonPackage rec {
     ++ uvicorn.optional-dependencies.standard;
     standard = [
       fastapi-cli
-      httpx
+      httpx2
       jinja2
       python-multipart
       email-validator
@@ -132,6 +132,10 @@ buildPythonPackage rec {
     "test_fastapi_cli"
     # Likely pydantic compat issue
     "test_exception_handler_body_access"
+    # Issues with br being in the accept-encoding headers of tests.
+    # "brotli" might be pulled in by httpx2.
+    "test_header_param_model_invalid"
+    "test_header_param_model_no_underscore"
   ];
 
   disabledTestPaths = [
