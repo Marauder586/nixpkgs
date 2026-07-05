@@ -6,7 +6,7 @@
   brotlicffi,
   buildPythonPackage,
   certifi,
-  chardet,
+  chardet_5_2,
   click,
   fetchFromGitHub,
   h2,
@@ -68,7 +68,7 @@ buildPythonPackage rec {
   doCheck = !(stdenv.hostPlatform.isDarwin && stdenv.hostPlatform.isAarch64);
 
   nativeCheckInputs = [
-    chardet
+    chardet_5_2
     multipart
     pytestCheckHook
     pytest-asyncio
