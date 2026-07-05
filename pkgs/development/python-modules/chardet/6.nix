@@ -2,30 +2,23 @@
   lib,
   buildPythonPackage,
   fetchPypi,
-  fetchFromGitHub,
   hatchling,
   hatch-vcs,
   hypothesis,
+  pytest-timeout,
+  pytest-xdist,
   pytestCheckHook,
   setuptools,
 }:
 
-let
-  chardet-test-data = fetchFromGitHub {
-    owner = "chardet";
-    repo = "test-data";
-    tag = "7.4.3";
-    hash = "sha256-2yNHpZoTd5Gj3whpHMqcYI1PA+pbhIbnybdOayTz7bg=";
-  };
-in
 buildPythonPackage rec {
   pname = "chardet";
-  version = "7.4.3";
+  version = "6.0.0.post1";
   pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-zB1OuSpOwcLfO0kINv+kaSLlmdNM4Lt1z0H9K/YwPVY=";
+    hash = "sha256-a3gEjDyXx7LtH7rXoY929aZUf30026tTbME4h8mpL6Q=";
   };
 
   nativeBuildInputs = [
@@ -34,12 +27,16 @@ buildPythonPackage rec {
     hatch-vcs
   ];
 
-  preCheck = ''
-    ln -s ${chardet-test-data} tests/data
-  '';
   nativeCheckInputs = [
     hypothesis
+    pytest-timeout
+    pytest-xdist
     pytestCheckHook
+  ];
+
+  disabledTests = [
+    # flaky; https://github.com/chardet/chardet/issues/256
+    "test_detect_all_and_detect_one_should_agree"
   ];
 
   pythonImportsCheck = [ "chardet" ];

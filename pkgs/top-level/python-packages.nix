@@ -2793,6 +2793,10 @@ self: super: with self; {
 
   chardet = callPackage ../development/python-modules/chardet { };
 
+  chardet_6 = callPackage ../development/python-modules/chardet/6.nix { };
+
+  chardet_5_2 = callPackage ../development/python-modules/chardet/5_2.nix { };
+
   charset-normalizer = callPackage ../development/python-modules/charset-normalizer { };
 
   chat-downloader = callPackage ../development/python-modules/chat-downloader { };
