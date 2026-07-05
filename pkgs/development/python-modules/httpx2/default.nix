@@ -27,7 +27,7 @@
   zstandard,
 
   # tests
-  chardet,
+  chardet_6,
   pytestCheckHook,
   pytest-httpbin,
   pytest-trio,
@@ -88,7 +88,7 @@ buildPythonPackage (finalAttrs: {
   '';
 
   nativeCheckInputs = [
-    chardet
+    chardet_6
     pytestCheckHook
     # pytest-httpbin
     pytest-trio
