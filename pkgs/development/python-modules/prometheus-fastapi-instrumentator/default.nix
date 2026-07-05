@@ -6,7 +6,7 @@
   pytestCheckHook,
   devtools,
   fastapi,
-  httpx,
+  httpx2,
   poetry-core,
   prometheus-client,
   requests,
@@ -15,14 +15,14 @@
 
 buildPythonPackage rec {
   pname = "prometheus-fastapi-instrumentator";
-  version = "7.1.0";
+  version = "8.0.2";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "trallnag";
     repo = "prometheus-fastapi-instrumentator";
     tag = "v${version}";
-    hash = "sha256-54h/kwIdzFzxdYglwcEBPkLYno1YH2iWklg35qY2b00=";
+    hash = "sha256-fTJjAM1jUZXfhjLo9xqlu45LaoqZ330ogOA6x7aByqw=";
   };
 
   build-system = [
@@ -37,7 +37,7 @@ buildPythonPackage rec {
   nativeCheckInputs = [
     devtools
     fastapi
-    httpx
+    httpx2
     pytestCheckHook
     requests
   ];
