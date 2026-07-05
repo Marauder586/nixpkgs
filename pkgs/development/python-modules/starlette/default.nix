@@ -15,7 +15,7 @@
   jinja2,
   python-multipart,
   pyyaml,
-  httpx,
+  httpx2,
 
   # tests
   pytestCheckHook,
@@ -27,14 +27,14 @@
 
 buildPythonPackage rec {
   pname = "starlette";
-  version = "1.1.0";
+  version = "1.3.1";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "encode";
     repo = "starlette";
     tag = version;
-    hash = "sha256-9iQXlpA1VDGw1c7X1zJPmJ3Dub46PwqrVIX1+fWOZ7M=";
+    hash = "sha256-0eby4cDIU2bPUv+1qSTnZtfo4kkgMDIDYnZ9wp2wtoI=";
   };
 
   build-system = [ hatchling ];
@@ -46,7 +46,7 @@ buildPythonPackage rec {
     jinja2
     python-multipart
     pyyaml
-    httpx
+    httpx2
   ];
 
   nativeCheckInputs = [
